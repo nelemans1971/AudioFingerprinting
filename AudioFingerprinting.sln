@@ -1,0 +1,117 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioFingerprint", "AudioFingerprint\AudioFingerprint.csproj", "{677E55A9-F11D-4BA2-8114-F619031EE804}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{E81F7F96-84CE-4730-A14B-51E39EECC7C2}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\Bass.Net.dll = Externals\Bass.Net.dll
+		Externals\MySql.Data.dll = Externals\MySql.Data.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Audio", "Audio", "{3730074C-B806-4780-819A-F077F203F8ED}"
+	ProjectSection(SolutionItems) = preProject
+		Audio\JK147510-0001.MP3 = Audio\JK147510-0001.MP3
+		Audio\JK147510-0002.MP3 = Audio\JK147510-0002.MP3
+		Audio\JK147510-0003.MP3 = Audio\JK147510-0003.MP3
+		Audio\JK147510-0004.MP3 = Audio\JK147510-0004.MP3
+		Audio\JK147510-0005.MP3 = Audio\JK147510-0005.MP3
+		Audio\JK147510-0006.MP3 = Audio\JK147510-0006.MP3
+		Audio\JK147510-0007.MP3 = Audio\JK147510-0007.MP3
+		Audio\JK147510-0008.MP3 = Audio\JK147510-0008.MP3
+		Audio\JK147510-0009.MP3 = Audio\JK147510-0009.MP3
+		Audio\JK147510-0010.MP3 = Audio\JK147510-0010.MP3
+		Audio\Readme.txt = Audio\Readme.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateInversedFingerprintIndex", "CreateInversedFingerprintIndex\CreateInversedFingerprintIndex.csproj", "{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A81E0039-FF74-4F7D-996D-9ED1F2323778}"
+	ProjectSection(SolutionItems) = preProject
+		Audio\Samples\JK147510-0002-128Sample-45s-60s.mp3 = Audio\Samples\JK147510-0002-128Sample-45s-60s.mp3
+		Audio\Samples\JK147510-0002-224Sample-45s-60s.mp3 = Audio\Samples\JK147510-0002-224Sample-45s-60s.mp3
+		Audio\Samples\JK147510-0002-64kpbs.mp3 = Audio\Samples\JK147510-0002-64kpbs.mp3
+		Audio\Samples\JK147510-0002-64Sample-45s-60s.mp3 = Audio\Samples\JK147510-0002-64Sample-45s-60s.mp3
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedCode", "SharedCode", "{ABD75C0B-9B3C-425F-B78C-510E1D1A9CA4}"
+	ProjectSection(SolutionItems) = preProject
+		SharedCode\Class.DB_Helper.cs = SharedCode\Class.DB_Helper.cs
+		SharedCode\Class.Inifile.cs = SharedCode\Class.Inifile.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchAudio", "MatchAudio\MatchAudio.csproj", "{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateAudioFingerprint", "CreateAudioFingerprint\CreateAudioFingerprint.csproj", "{631E4037-82A1-45BC-A2B1-69F1EC5485D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioChannel", "RadioChannel\RadioChannel.csproj", "{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioChannelWebService", "RadioChannelWebService\RadioChannelWebService.csproj", "{0CF90C58-280C-42EC-B117-CB9C9F8002EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseScripts", "DatabaseScripts", "{560A07CA-37FD-4DB5-B36B-A426E00CEF4E}"
+	ProjectSection(SolutionItems) = preProject
+		DatabaseScripts\1.CreateDatabase.sql = DatabaseScripts\1.CreateDatabase.sql
+		DatabaseScripts\CopyTables - Internal.sql = DatabaseScripts\CopyTables - Internal.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDatabase", "CreateDatabase\CreateDatabase.csproj", "{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DigiLeen|Any CPU = DigiLeen|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{677E55A9-F11D-4BA2-8114-F619031EE804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677E55A9-F11D-4BA2-8114-F619031EE804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677E55A9-F11D-4BA2-8114-F619031EE804}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{677E55A9-F11D-4BA2-8114-F619031EE804}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{677E55A9-F11D-4BA2-8114-F619031EE804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677E55A9-F11D-4BA2-8114-F619031EE804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FFC2FC0-C9C0-4CF4-84F8-0823B0A108FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CBF316-75D6-4FC2-A53A-5B0AB9DD3440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631E4037-82A1-45BC-A2B1-69F1EC5485D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631E4037-82A1-45BC-A2B1-69F1EC5485D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631E4037-82A1-45BC-A2B1-69F1EC5485D2}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{631E4037-82A1-45BC-A2B1-69F1EC5485D2}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{631E4037-82A1-45BC-A2B1-69F1EC5485D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631E4037-82A1-45BC-A2B1-69F1EC5485D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBDDA96-EA0D-489F-8C1C-E66278B52B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF90C58-280C-42EC-B117-CB9C9F8002EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF90C58-280C-42EC-B117-CB9C9F8002EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF90C58-280C-42EC-B117-CB9C9F8002EC}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF90C58-280C-42EC-B117-CB9C9F8002EC}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{0CF90C58-280C-42EC-B117-CB9C9F8002EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF90C58-280C-42EC-B117-CB9C9F8002EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}.DigiLeen|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}.DigiLeen|Any CPU.Build.0 = Debug|Any CPU
+		{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF6DD3E-3FDA-46BC-9C16-E8E925F8ABD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A81E0039-FF74-4F7D-996D-9ED1F2323778} = {3730074C-B806-4780-819A-F077F203F8ED}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{677E55A9-F11D-4BA2-8114-F619031EE804}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AudioFingerprint</RootNamespace>
+    <AssemblyName>AudioFingerprint</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FRAMEWORK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;FRAMEWORK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bass.Net, Version=2.4.10.3, Culture=neutral, PublicKeyToken=b7566c273e6ef480, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\Bass.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedCode\Class.DB_Helper.cs">
+      <Link>Class.DB_Helper.cs</Link>
+    </Compile>
+    <Compile Include="AcoustID\Audio\AudioDecoder.cs" />
+    <Compile Include="AcoustID\Audio\BassDecoder.cs" />
+    <Compile Include="AcoustID\Audio\IAudioDecoder.cs" />
+    <Compile Include="AcoustID\Audio\IDecoder.cs" />
+    <Compile Include="AcoustID\Audio\IFFTService.cs" />
+    <Compile Include="AcoustID\Audio\LomontFFTService.cs" />
+    <Compile Include="AcoustID\Audio\Resampler.cs" />
+    <Compile Include="AcoustID\ChromaContext.cs" />
+    <Compile Include="AcoustID\Chromaprint\AudioProcessor.cs" />
+    <Compile Include="AcoustID\Chromaprint\Chroma.cs" />
+    <Compile Include="AcoustID\Chromaprint\ChromaFilter.cs" />
+    <Compile Include="AcoustID\Chromaprint\ChromaNormalizer.cs" />
+    <Compile Include="AcoustID\Chromaprint\ChromaprintAlgorithm.cs" />
+    <Compile Include="AcoustID\Chromaprint\ChromaResampler.cs" />
+    <Compile Include="AcoustID\Chromaprint\Classifier.cs" />
+    <Compile Include="AcoustID\Chromaprint\CombinedBuffer.cs" />
+    <Compile Include="AcoustID\Chromaprint\FFT.cs" />
+    <Compile Include="AcoustID\Chromaprint\FFTFrame.cs" />
+    <Compile Include="AcoustID\Chromaprint\Filter.cs" />
+    <Compile Include="AcoustID\Chromaprint\FingerprintCalculator.cs" />
+    <Compile Include="AcoustID\Chromaprint\FingerprintCompressor.cs" />
+    <Compile Include="AcoustID\Chromaprint\FingerprintDecompressor.cs" />
+    <Compile Include="AcoustID\Chromaprint\Fingerprinter.cs" />
+    <Compile Include="AcoustID\Chromaprint\FingerprinterConfiguration.cs" />
+    <Compile Include="AcoustID\Chromaprint\IAudioConsumer.cs" />
+    <Compile Include="AcoustID\Chromaprint\IFeatureVectorConsumer.cs" />
+    <Compile Include="AcoustID\Chromaprint\IFFTFrameConsumer.cs" />
+    <Compile Include="AcoustID\Chromaprint\Image.cs" />
+    <Compile Include="AcoustID\Chromaprint\ImageBuilder.cs" />
+    <Compile Include="AcoustID\Chromaprint\IntegralImage.cs" />
+    <Compile Include="AcoustID\Chromaprint\Lloyds.cs" />
+    <Compile Include="AcoustID\Chromaprint\MovingAverage.cs" />
+    <Compile Include="AcoustID\Chromaprint\Quantizer.cs" />
+    <Compile Include="AcoustID\Chromaprint\SilenceRemover.cs" />
+    <Compile Include="AcoustID\Chromaprint\SpectralCentroid.cs" />
+    <Compile Include="AcoustID\Chromaprint\Spectrum.cs" />
+    <Compile Include="AcoustID\Configuration.cs" />
+    <Compile Include="AcoustID\FingerprintAcoustID.cs" />
+    <Compile Include="AcoustID\Util\Base64.cs" />
+    <Compile Include="AcoustID\Util\BitStringReader.cs" />
+    <Compile Include="AcoustID\Util\BitStringWriter.cs" />
+    <Compile Include="AcoustID\Util\Chromagram.cs" />
+    <Compile Include="AcoustID\Util\Helper.cs" />
+    <Compile Include="AcoustID\Util\Spectrogram.cs" />
+    <Compile Include="AcoustID\Web\Artist.cs" />
+    <Compile Include="AcoustID\Web\IResponseParser.cs" />
+    <Compile Include="AcoustID\Web\LookupResponse.cs" />
+    <Compile Include="AcoustID\Web\LookupResult.cs" />
+    <Compile Include="AcoustID\Web\LookupService.cs" />
+    <Compile Include="AcoustID\Web\Recording.cs" />
+    <Compile Include="AcoustID\Web\ReleaseGroup.cs" />
+    <Compile Include="AcoustID\Web\SubmitResponse.cs" />
+    <Compile Include="AcoustID\Web\SubmitResult.cs" />
+    <Compile Include="AcoustID\Web\SubmitService.cs" />
+    <Compile Include="AcoustID\Web\XmlResponseParser.cs" />
+    <Compile Include="Audio\AudioEngine.cs" />
+    <Compile Include="Audio\AudioNormalizer.cs" />
+    <Compile Include="Audio\AudioSamples.cs" />
+    <Compile Include="Audio\BassLifetimeManager.cs" />
+    <Compile Include="Audio\BassService.cs" />
+    <Compile Include="Audio\FingerprintSignature.cs" />
+    <Compile Include="Audio\FrequencyRange.cs" />
+    <Compile Include="Audio\LowpassFilters.cs" />
+    <Compile Include="Audio\SimpleBitVector32.cs" />
+    <Compile Include="Audio\SoundTouch1.71\AntiAliasFilter.cs" />
+    <Compile Include="Audio\SoundTouch1.71\BpmDetect.cs" />
+    <Compile Include="Audio\SoundTouch1.71\Defaults.cs" />
+    <Compile Include="Audio\SoundTouch1.71\FifoProcessor.cs" />
+    <Compile Include="Audio\SoundTouch1.71\FifoSampleBuffer.cs" />
+    <Compile Include="Audio\SoundTouch1.71\FifoSamplePipe.cs" />
+    <Compile Include="Audio\SoundTouch1.71\FirFilter.cs" />
+    <Compile Include="Audio\SoundTouch1.71\FirFilterFloat.cs" />
+    <Compile Include="Audio\SoundTouch1.71\FirFilterInteger.cs" />
+    <Compile Include="Audio\SoundTouch1.71\PeakFinder.cs" />
+    <Compile Include="Audio\SoundTouch1.71\RateTransposer.cs" />
+    <Compile Include="Audio\SoundTouch1.71\RateTransposerFloat.cs" />
+    <Compile Include="Audio\SoundTouch1.71\RateTransposerInteger.cs" />
+    <Compile Include="Audio\SoundTouch1.71\SettingId.cs" />
+    <Compile Include="Audio\SoundTouch1.71\SoundTouch.cs" />
+    <Compile Include="Audio\SoundTouch1.71\TimeStretch.cs" />
+    <Compile Include="Audio\SoundTouch1.71\TimeStretchFloat.cs" />
+    <Compile Include="Audio\SoundTouch1.71\TimeStretchInteger.cs" />
+    <Compile Include="Audio\SoundTouch1.71\Utility\ArrayPtr.cs" />
+    <Compile Include="Audio\SpectrogramConfig.cs" />
+    <Compile Include="Audio\SubFingerprintHash.cs" />
+    <Compile Include="Compression\Compressor.cs" />
+    <Compile Include="FFT\FFT-Net.cs" />
+    <Compile Include="FFT\FFTW\CachedFFTWService.cs" />
+    <Compile Include="FFT\FFTW\FFTWArray.cs" />
+    <Compile Include="FFT\FFTW\FFTWService.cs" />
+    <Compile Include="FFT\FFTW\FFTWService64.cs" />
+    <Compile Include="FFT\FFTW\FFTWService86.cs" />
+    <Compile Include="FFT\FFTW\InteropFFTWDirection.cs" />
+    <Compile Include="FFT\FFTW\InteropFFTWFlags.cs" />
+    <Compile Include="FFT\FFTW\InteropFFTWKind.cs" />
+    <Compile Include="FFT\FFTW\x64\FFTWFNativeMethods.cs" />
+    <Compile Include="FFT\FFTW\x64\FFTWNativeMethods.cs" />
+    <Compile Include="FFT\FFTW\x86\FFTWFNativeMethods.cs" />
+    <Compile Include="FFT\FFTW\x86\FFTWNativeMethods.cs" />
+    <Compile Include="Lucene.Common\AudioIndex.cs" />
+    <Compile Include="Lucene.Common\CDRAnalyzer.cs" />
+    <Compile Include="Lucene.Common\Class.CDRUtils.cs" />
+    <Compile Include="Lucene.Common\Class.Inifile.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Analyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\ASCIIFoldingFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\BaseCharFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\CachingTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\CharArraySet.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\CharFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\CharReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\CharStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\CharTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\ISOLatin1AccentFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\KeywordAnalyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\KeywordTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\LengthFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\LetterTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\LowerCaseFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\LowerCaseTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\MappingCharFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\NormalizeCharMap.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\NumericTokenStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\PerFieldAnalyzerWrapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\PorterStemFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\PorterStemmer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\SimpleAnalyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Standard\StandardAnalyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Standard\StandardFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Standard\StandardTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Standard\StandardTokenizerImpl.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\StopAnalyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\StopFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\TeeSinkTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Token.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\FlagsAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\IFlagsAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\IOffsetAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\IPayloadAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\IPositionIncrementAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\ITermAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\ITypeAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\OffsetAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\PayloadAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\PositionIncrementAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\TermAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenattributes\TypeAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\TokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\Tokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\TokenStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\WhitespaceAnalyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\WhitespaceTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Analysis\WordlistLoader.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\DefaultEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\GradientFormatter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\Highlighter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\IEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\IFormatter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\IFragmenter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\InvalidTokenOffsetsException.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\IScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\NullFragmenter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\QueryScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\QueryTermExtractor.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\QueryTermScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\SimpleFragmenter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\SimpleHTMLEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\SimpleHTMLFormatter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\SimpleSpanFragmenter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\SpanGradientFormatter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\TextFragment.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\TokenGroup.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\TokenSources.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\WeightedSpanTerm.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\WeightedSpanTermExtractor.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Highlighter\WeightedTerm.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\CallerThreadContext.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\CanceledWorkItemsGroup.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\EventWaitHandle.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\EventWaitHandleFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\Exceptions.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\Interfaces.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\InternalInterfaces.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\PriorityQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\SLExt.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\SmartThreadPool.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\SmartThreadPool.ThreadEntry.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\Stopwatch.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\STPEventWaitHandle.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\STPPerformanceCounter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\STPStartInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\SynchronizedDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WIGStartInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItem.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItem.WorkItemResult.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItemFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItemInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItemResultTWrapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItemsGroup.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItemsGroupBase.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\SmartThreadPool\WorkItemsQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Index\ThreadedIndexWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\CollectionsHelper.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\EmptyCollector.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\KeywordTokenStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\MemoryIndex.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\MemoryTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\MemoryTermPositions.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\MemoryTermPositionVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\TermComparer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Miscellaneous\EmptyTokenStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Miscellaneous\InjectablePrefixAwareTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Miscellaneous\PatternAnalyzer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Miscellaneous\PrefixAndSuffixAwareTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Miscellaneous\PrefixAwareTokenStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Miscellaneous\SingleTokenTokenStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Memory\MemoryMappedDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\NGram\EdgeNGramTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\NGram\EdgeNGramTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\NGram\NGramTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\NGram\NGramTokenizer.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\AbstractEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\DelimitedPayloadTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\FloatEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\IdentityEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\IntegerEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\NumericPayloadTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\PayloadEncoder.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\PayloadHelper.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\TokenOffsetPayloadTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Payloads\TypeAsPayloadTokenFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Codec\OneDimensionalNonWeightedTokenSettingsCodec.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Codec\SimpleThreeDimensionalTokenSettingsCodec.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Codec\TokenSettingsCodec.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Codec\TwoDimensionalNonWeightedSynonymTokenSettingsCodec.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Matrix\Column.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Matrix\Matrix.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Matrix\MatrixPermutationIterator.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\Matrix\Row.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\ShingleAnalyzerWrapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\ShingleFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\ShingleMatrixFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Shingle\TokenPositioner.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\IDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\JaroWinklerDistance.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\LevenshteinDistance.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\LuceneDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\NGramDistance.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\PlainTextDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\SpellChecker.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\StringDistance.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\SuggestWord.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\SuggestWordQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Contrib\Spell\TRStringDistance.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\AbstractField.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\CompressionTools.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\DateField.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\DateTools.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\Document.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\Field.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\Fieldable.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\FieldSelector.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\FieldSelectorResult.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\LoadFirstFieldSelector.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\MapFieldSelector.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\NumberTools.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\NumericField.cs" />
+    <Compile Include="Lucene.Net.3.03\Document\SetBasedFieldSelector.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\AbstractAllTermDocs.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\AllTermDocs.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\BufferedDeletes.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ByteBlockPool.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ByteSliceReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ByteSliceWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\CharBlockPool.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\CheckIndex.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\CompoundFileReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\CompoundFileWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ConcurrentMergeScheduler.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\CorruptIndexException.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DefaultSkipListReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DefaultSkipListWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DirectoryReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocConsumerPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldConsumerPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldConsumerPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldConsumers.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldConsumersPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldConsumersPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldProcessor.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldProcessorPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocFieldProcessorPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocInverter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocInverterPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocInverterPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocumentsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\DocumentsWriterThreadState.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldInfos.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldInvertState.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldReaderException.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldSortedTermVectorMapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldsReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FieldsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FilterIndexReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsDocsConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsDocsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsFieldsConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsFieldsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsPositionsConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsPositionsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsTermsConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FormatPostingsTermsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FreqProxFieldMergeState.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FreqProxTermsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FreqProxTermsWriterPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\FreqProxTermsWriterPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexCommit.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexDeletionPolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexFileDeleter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexFileNameFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexFileNames.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IndexWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\IntBlockPool.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\InvertedDocConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\InvertedDocConsumerPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\InvertedDocConsumerPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\InvertedDocEndConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\InvertedDocEndConsumerPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\InvertedDocEndConsumerPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\KeepOnlyLastCommitDeletionPolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\LogByteSizeMergePolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\LogDocMergePolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\LogMergePolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MergeDocIDRemapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MergePolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MergeScheduler.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MultiLevelSkipListReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MultiLevelSkipListWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MultipleTermPositions.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\MultiReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\NormsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\NormsWriterPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\NormsWriterPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ParallelReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\Payload.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\PositionBasedTermVectorMapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\RawPostingList.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ReadOnlyDirectoryReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ReadOnlySegmentReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\ReusableStringReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentInfos.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentMergeInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentMergeQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentMerger.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentTermDocs.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentTermPositions.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentTermPositionVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentTermVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SegmentWriteState.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SerialMergeScheduler.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SnapshotDeletionPolicy.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\SortedTermVectorMapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\StaleReaderException.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\StoredFieldsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\StoredFieldsWriterPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\Term.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermBuffer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermDocs.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermFreqVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermInfosReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermInfosWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermPositions.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermPositionVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermsHash.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermsHashConsumer.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermsHashConsumerPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermsHashConsumerPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermsHashPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermsHashPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorEntry.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorEntryFreqSortedComparator.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorMapper.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorOffsetInfo.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorsReader.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorsTermsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorsTermsWriterPerField.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorsTermsWriterPerThread.cs" />
+    <Compile Include="Lucene.Net.3.03\Index\TermVectorsWriter.cs" />
+    <Compile Include="Lucene.Net.3.03\LucenePackage.cs" />
+    <Compile Include="Lucene.Net.3.03\Messages\INLSException.cs" />
+    <Compile Include="Lucene.Net.3.03\Messages\Message.cs" />
+    <Compile Include="Lucene.Net.3.03\Messages\MessageImpl.cs" />
+    <Compile Include="Lucene.Net.3.03\Messages\NLS.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\CharStream.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\FastCharStream.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\MultiFieldQueryParser.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\ParseException.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\QueryParser.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\QueryParserConstants.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\QueryParserTokenManager.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\Token.cs" />
+    <Compile Include="Lucene.Net.3.03\QueryParser\TokenMgrError.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\BooleanClause.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\BooleanQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\BooleanScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\BooleanScorer2.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\CachingSpanFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\CachingWrapperFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Collector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ComplexExplanation.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ConjunctionScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ConstantScoreQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\DefaultSimilarity.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\DisjunctionMaxQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\DisjunctionMaxScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\DisjunctionSumScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\DocIdSet.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\DocIdSetIterator.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ExactPhraseScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Explanation.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldCache.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldCacheImpl.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldCacheRangeFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldCacheTermsFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldComparator.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldComparatorSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldDoc.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldDocSortedHitQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FieldValueHitQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Filter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FilteredDocIdSet.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FilteredDocIdSetIterator.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FilteredQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FilteredTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FilterManager.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\ByteFieldSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\CustomScoreProvider.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\CustomScoreQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\DocValues.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\FieldCacheSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\FieldScoreQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\FloatFieldSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\IntFieldSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\OrdFieldSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\ReverseOrdFieldSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\ShortFieldSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\ValueSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Function\ValueSourceQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FuzzyQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\FuzzyTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\HitQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\IndexSearcher.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\MatchAllDocsQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\MultiPhraseQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\MultiSearcher.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\MultiTermQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\MultiTermQueryWrapperFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\NumericRangeFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\NumericRangeQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ParallelMultiSearcher.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\AveragePayloadFunction.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\MaxPayloadFunction.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\MinPayloadFunction.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\PayloadFunction.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\PayloadNearQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\PayloadSpanUtil.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Payloads\PayloadTermQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PhrasePositions.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PhraseQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PhraseQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PhraseScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PositiveScoresOnlyCollector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PrefixFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PrefixQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\PrefixTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Query.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\QueryTermVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\QueryWrapperFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ReqExclScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ReqOptSumScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ScoreCachingWrappingScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\ScoreDoc.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Scorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Searchable.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Searcher.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Similarity.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SimilarityDelegator.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SingleTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SloppyPhraseScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Sort.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SortField.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SpanFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SpanFilterResult.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\SpanQueryFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\FieldMaskingSpanQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\NearSpansOrdered.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\NearSpansUnordered.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanFirstQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanNearQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanNotQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanOrQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\Spans.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanTermQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\SpanWeight.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Spans\TermSpans.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TermQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TermRangeFilter.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TermRangeQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TermRangeTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TermScorer.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TimeLimitingCollector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TopDocs.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TopDocsCollector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TopFieldCollector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TopFieldDocs.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\TopScoreDocCollector.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\Weight.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\WildcardQuery.cs" />
+    <Compile Include="Lucene.Net.3.03\Search\WildcardTermEnum.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\AlreadyClosedException.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\BufferedIndexInput.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\BufferedIndexOutput.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\CheckSumIndexInput.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\CheckSumIndexOutput.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\Directory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\FileSwitchDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\FSDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\FSLockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\IndexInput.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\IndexOutput.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\Lock.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\LockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\LockObtainFailedException.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\LockReleaseFailedException.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\LockStressTest.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\LockVerifyServer.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\MMapDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\NativeFSLockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\NIOFSDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\NoLockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\NoSuchDirectoryException.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\RAMDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\RAMFile.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\RAMInputStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\RAMOutputStream.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\SimpleFSDirectory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\SimpleFSLockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\SingleInstanceLockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Store\VerifyingLockFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\AppSettings.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\AttributeImplItem.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\BitSetSupport.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\BuildType.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Character.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\CloseableThreadLocalProfiler.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\CollectionsHelper.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compare.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\ConcurrentDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\Func.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\ISet.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\SetFactory.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\SortedSet.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\ThreadLocal.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Compatibility\WrappedHashSet.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\CRC32.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Cryptography.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Deflater.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Double.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\EquatableList.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\FileSupport.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\GeneralKeyedCollection.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\HashMap.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\IChecksum.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Inflater.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\IThreadRunnable.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Number.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\OS.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\SharpZipLib.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\Single.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\TextSupport.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\ThreadClass.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\ThreadLock.cs" />
+    <Compile Include="Lucene.Net.3.03\Support\WeakDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\ArrayUtil.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\Attribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\AttributeSource.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\AverageGuessMemoryModel.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\BitUtil.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\BitVector.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\Cache\Cache.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\Cache\SimpleLRUCache.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\Cache\SimpleMapCache.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\CloseableThreadLocal.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\Constants.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\DocIdBitSet.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\FieldCacheSanityChecker.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\IAttribute.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\IdentityDictionary.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\IndexableBinaryStringTools.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\MapOfSets.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\MemoryModel.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\NumericUtils.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\OpenBitSet.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\OpenBitSetDISI.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\OpenBitSetIterator.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\PriorityQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\RamUsageEstimator.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\ReaderUtil.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\ScorerDocQueue.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\SimpleStringInterner.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\SmallFloat.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\SortedVIntList.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\SorterTemplate.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\StringHelper.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\StringInterner.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\ToStringUtils.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\UnicodeUtil.cs" />
+    <Compile Include="Lucene.Net.3.03\Util\Version.cs" />
+    <Compile Include="Compression\LZ4\Lz4.cs" />
+    <Compile Include="Compression\LZ4\Lz4CompressionStream.cs" />
+    <Compile Include="Compression\LZ4\Lz4DecompressionStream.cs" />
+    <Compile Include="Compression\LZ4\Lz4Mode.cs" />
+    <Compile Include="Math\SimilarityUtility.cs" />
+    <Compile Include="Audio\MMHashtable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\AcoustIDQuery.cs" />
+    <Compile Include="Query\SubFingerprintQuery.cs" />
+    <Compile Include="Query\QueryResultset.cs" />
+    <Compile Include="Streaming\CircularBlockBuffer.cs" />
+    <Compile Include="Streaming\IceCastStream.cs" />
+    <Compile Include="Streaming\IniFiles\IniFileElement.cs" />
+    <Compile Include="Streaming\IniFiles\IniFileLight.cs" />
+    <Compile Include="Streaming\IniFiles\IniFiles.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\HttpBasicAuthenticator.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\IAuthenticator.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\NtlmAuthenticator.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth1Authenticator.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth2Authenticator.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\Extensions\CollectionExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\Extensions\OAuthExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\Extensions\StringExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\Extensions\TimeExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\HttpPostParameter.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\HttpPostParameterType.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthParameterHandling.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthSignatureMethod.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthSignatureTreatment.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthTools.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthType.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthWebQueryInfo.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\OAuthWorkflow.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\WebPair.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\WebPairCollection.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\WebParameter.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\OAuth\WebParameterCollection.cs" />
+    <Compile Include="WebService\RestSharp\Authenticators\SimpleAuthenticator.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\Crc32.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\FlushType.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\GZipStream.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\Inflate.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\InfTree.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\ZLib.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\ZLibCodec.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\ZLibConstants.cs" />
+    <Compile Include="WebService\RestSharp\Compression\ZLib\ZLibStream.cs" />
+    <Compile Include="WebService\RestSharp\Deserializers\DeserializeAsAttribute.cs" />
+    <Compile Include="WebService\RestSharp\Deserializers\DotNetXmlDeserializer.cs" />
+    <Compile Include="WebService\RestSharp\Deserializers\IDeserializer.cs" />
+    <Compile Include="WebService\RestSharp\Deserializers\JsonDeserializer.cs" />
+    <Compile Include="WebService\RestSharp\Deserializers\XmlAttributeDeserializer.cs" />
+    <Compile Include="WebService\RestSharp\Deserializers\XmlDeserializer.cs" />
+    <Compile Include="WebService\RestSharp\Enum.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\MiscExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\MonoHttp\Helpers.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\MonoHttp\HtmlEncoder.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\MonoHttp\HttpUtility.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\ReflectionExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\ResponseExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\StringExtensions.cs" />
+    <Compile Include="WebService\RestSharp\Extensions\XmlExtensions.cs" />
+    <Compile Include="WebService\RestSharp\FileParameter.cs" />
+    <Compile Include="WebService\RestSharp\Http.Async.cs" />
+    <Compile Include="WebService\RestSharp\Http.cs" />
+    <Compile Include="WebService\RestSharp\Http.Sync.cs" />
+    <Compile Include="WebService\RestSharp\HttpCookie.cs" />
+    <Compile Include="WebService\RestSharp\HttpFile.cs" />
+    <Compile Include="WebService\RestSharp\HttpHeader.cs" />
+    <Compile Include="WebService\RestSharp\HttpParameter.cs" />
+    <Compile Include="WebService\RestSharp\HttpResponse.cs" />
+    <Compile Include="WebService\RestSharp\IHttp.cs" />
+    <Compile Include="WebService\RestSharp\IHttpFactory.cs" />
+    <Compile Include="WebService\RestSharp\IHttpResponse.cs" />
+    <Compile Include="WebService\RestSharp\IRestClient.cs" />
+    <Compile Include="WebService\RestSharp\IRestRequest.cs" />
+    <Compile Include="WebService\RestSharp\IRestResponse.cs" />
+    <Compile Include="WebService\RestSharp\Parameter.cs" />
+    <Compile Include="WebService\RestSharp\RestClient.Async.cs" />
+    <Compile Include="WebService\RestSharp\RestClient.cs" />
+    <Compile Include="WebService\RestSharp\RestClient.Sync.cs" />
+    <Compile Include="WebService\RestSharp\RestClientExtensions.cs" />
+    <Compile Include="WebService\RestSharp\RestRequest.cs" />
+    <Compile Include="WebService\RestSharp\RestRequestAsyncHandle.cs" />
+    <Compile Include="WebService\RestSharp\RestResponse.cs" />
+    <Compile Include="WebService\RestSharp\RestResponseCookie.cs" />
+    <Compile Include="WebService\RestSharp\Serializers\DotNetXmlSerializer.cs" />
+    <Compile Include="WebService\RestSharp\Serializers\ISerializer.cs" />
+    <Compile Include="WebService\RestSharp\Serializers\JsonSerializer.cs" />
+    <Compile Include="WebService\RestSharp\Serializers\SerializeAsAttribute.cs" />
+    <Compile Include="WebService\RestSharp\Serializers\XmlSerializer.cs" />
+    <Compile Include="WebService\RestSharp\SimpleJson.cs" />
+    <Compile Include="WebService\RestSharp\Validation\Require.cs" />
+    <Compile Include="WebService\RestSharp\Validation\Validate.cs" />
+    <Compile Include="WebService\WSRecognize.cs" />
+    <Compile Include="WebService\WSXMLResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lucene.Net.3.03\Analysis\Standard\READ_BEFORE_REGENERATING.txt" />
+    <Content Include="Lucene.Net.3.03\Contrib\Spell\Package.html" />
+    <Content Include="x64\bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\basscd.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\bassenc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\bassflac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\bassmidi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\bassmix.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\basswma.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\bass_aac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\bass_fx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\libfftw3-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\libfftw3f-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\libfftw3l-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\lz4X64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\tags.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\basscd.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bassenc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bassflac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bassmidi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bassmix.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\basswma.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bass_aac.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\bass_fx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\libfftw3-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\libfftw3f-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\libfftw3l-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\lz4X86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\tags.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fingerprint.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Fingerprint.Override.ini" />
+    <None Include="Lucene.Net.3.03\Analysis\Standard\StandardTokenizerImpl.jflex" />
+    <None Include="Lucene.Net.3.03\QueryParser\QueryParser.JJ" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

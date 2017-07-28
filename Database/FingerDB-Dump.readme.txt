@@ -1,0 +1,7 @@
+The archive DatabaseDump.7z contains a mysql dump of three different tables.
+ - titelnummertrack_id (1320296 records)
+ - fingerid (1320262 records)
+ - subfingerid (1320296 records)
+
+Together with the lucene index this is a large sample size of fingerprints which can be used
+to for example follow radio stations.

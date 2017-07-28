@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0CF90C58-280C-42EC-B117-CB9C9F8002EC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RadioChannelWebService</RootNamespace>
+    <AssemblyName>RadioChannelWebService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Selectors" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CDRLogger.cs" />
+    <Compile Include="GZipEncoder\GZipHelper.cs" />
+    <Compile Include="GZipEncoder\GZipMessageEncoderFactory.cs" />
+    <Compile Include="GZipEncoder\GZipMessageEncodingBindingElement.cs" />
+    <Compile Include="GZipEncoder\GZipMessageEncodingBindingElementImporter.cs" />
+    <Compile Include="LogLib\CompositeLogger.cs" />
+    <Compile Include="LogLib\DebugLogger.cs" />
+    <Compile Include="LogLib\DelegatableLogger.cs" />
+    <Compile Include="LogLib\EmailLogger.cs" />
+    <Compile Include="LogLib\EventLogLogger.cs" />
+    <Compile Include="LogLib\FileLogger.cs" />
+    <Compile Include="LogLib\InsistentLogger.cs" />
+    <Compile Include="LogLib\LogEntry.cs" />
+    <Compile Include="LogLib\LogEntryCategoryFilter.cs" />
+    <Compile Include="LogLib\LogEntryCDRFormatter.cs" />
+    <Compile Include="LogLib\LogEntryFilter.cs" />
+    <Compile Include="LogLib\LogEntryFormatter.cs" />
+    <Compile Include="LogLib\LogEntryMessageOnlyFormatter.cs" />
+    <Compile Include="LogLib\LogEntryPassFilter.cs" />
+    <Compile Include="LogLib\LogEntryStandardFormatter.cs" />
+    <Compile Include="LogLib\Logger.cs" />
+    <Compile Include="LogLib\LoggerTester.cs" />
+    <Compile Include="LogLib\LogReceiverLogger.cs" />
+    <Compile Include="LogLib\LogReceiverLoggerFactory.cs" />
+    <Compile Include="LogLib\LogSeverity.cs" />
+    <Compile Include="LogLib\LogSocketReader.cs" />
+    <Compile Include="LogLib\LogSocketReaderReceiver.cs" />
+    <Compile Include="LogLib\MemoryLogger.cs" />
+    <Compile Include="LogLib\NullLogger.cs" />
+    <Compile Include="LogLib\RollingFileLogger.cs" />
+    <Compile Include="LogLib\SerialLogger.cs" />
+    <Compile Include="LogLib\SerialSocketLogger.cs" />
+    <Compile Include="LogLib\TextWriterLogger.cs" />
+    <Compile Include="LogLib\TraceLogger.cs" />
+    <Compile Include="MyServiceInstaller.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLogging\CustomBehavior.cs" />
+    <Compile Include="ServiceLogging\Inspector.cs" />
+    <Compile Include="ServiceLogging\InspectorEventArgs.cs" />
+    <Compile Include="ServiceLogging\LogUsage.cs" />
+    <Compile Include="ServiceLogging\SMTPLogging.cs" />
+    <Compile Include="Utils\Mail.cs" />
+    <Compile Include="Utils\QueryString.cs" />
+    <Compile Include="Utils\RebootWindows.cs" />
+    <Compile Include="Webservice\CustomWebAuthenticationValidator.cs" />
+    <Compile Include="Webservice\ReceiveIndex.cs" />
+    <Compile Include="Webservice\RESTAccessGroupAttribute.cs" />
+    <Compile Include="Webservice\IWebserviceContract.cs" />
+    <Compile Include="Webservice\ServiceHelper.cs" />
+    <Compile Include="Webservice\Webservice.cs" />
+    <Compile Include="Webservice\LuceneIndexen.cs" />
+    <Compile Include="WindowsService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
+    <None Include="RadioChannelWebService.DEBUG.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="RadioChannelWebService.RELEASE.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="RadioChannelWebService.UserDB.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AudioFingerprint\AudioFingerprint.csproj">
+      <Project>{677e55a9-f11d-4ba2-8114-f619031ee804}</Project>
+      <Name>AudioFingerprint</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
