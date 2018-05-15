@@ -163,10 +163,11 @@ namespace AudioFingerprint.Audio
             WebClient wc = new WebClient();
             try
             {
+                StringBuilder sb = null;
                 using (MemoryStream stream = new MemoryStream(wc.DownloadData(plsUrl)))
                 {
                     stream.Seek(0, SeekOrigin.Begin);
-                    StringBuilder sb = new StringBuilder(1024);
+                    sb = new StringBuilder(1024);
                     using (StreamReader reader = new StreamReader(stream))
                     {
                         while (reader.Peek() != -1)
@@ -176,12 +177,42 @@ namespace AudioFingerprint.Audio
                             sb.Append("\r\n");
                         }
                     }
-                   
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.LoadXml(sb.ToString());
-                    XmlElement xRef = xmlDoc.GetElementsByTagName("ref")[0] as XmlElement;
-                    return xRef.Attributes["href"].Value.ToString();                    
                 } //using
+
+                // loop through all entries to find one which works
+                // we skip evberything whiuch doesnt use port 80 or 443
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(sb.ToString());
+                XmlElement xRef = null;
+                foreach (XmlElement xRefEntry in xmlDoc.GetElementsByTagName("ref"))
+                {
+                    try
+                    {
+                        Uri uri = new Uri(xRefEntry.Attributes["href"].Value.ToString());
+                        if ((uri.Port == 80 || uri.Port == 443))
+                        {
+                            WebRequest webRequest = HttpWebRequest.Create(xRefEntry.Attributes["href"].Value.ToString());
+                            webRequest.Method = "HEAD";
+                            using (HttpWebResponse webResponse = (HttpWebResponse )webRequest.GetResponse())
+                            {
+                                if (webResponse.StatusCode == HttpStatusCode.OK)
+                                {
+                                    xRef = xRefEntry;
+                                    break;
+                                }
+                            } //using
+                            
+                            
+                        }
+                    }
+                    catch { }
+                }
+
+
+                if (xRef != null)
+                {
+                    return xRef.Attributes["href"].Value.ToString();
+                }
             }
             catch
             {

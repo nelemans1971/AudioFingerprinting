@@ -153,7 +153,9 @@ slip - Nine Inch Nails" which are included in the Visual Studio solution do not
 count toward this limit. The metadata is not needed to see if an audio fragment is 
 detected, you just don't see what the name of the track is.
 
-Expect a sign up page at www.muziekweb.nl for our web service around the end op august.
+The database dump can be download from ftp.cdr.nl/FingerprintDump (login as user anonymous)
+
+A webservice api account can be request at https://www-dev.muziekweb.nl/MuziekWeb/Webservice/RequestAccount.php
 
 
 ### Setting up the MySQL database with existing fingerprints
