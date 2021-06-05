@@ -155,7 +155,7 @@ detected, you just don't see what the name of the track is.
 
 The database dump can be download from ftp.cdr.nl/FingerprintDump (login as user anonymous)
 
-A webservice api account can be request at https://www-dev.muziekweb.nl/MuziekWeb/Webservice/RequestAccount.php
+A webservice api account can be request at https://www.muziekweb.nl/MuziekWeb/Webservice/RequestAccount.php
 
 
 ### Setting up the MySQL database with existing fingerprints
